@@ -2,21 +2,21 @@
 
 <div align="center">
 
-[![Build status](https://img.shields.io/badge/vs2022-pass-green)](https://github.com/NeuricsTech/BMR2116_Demo)&nbsp;
-[![GitHub Release](https://img.shields.io/github/v/release/NeuricsTech/BMR2116_Demo?color=green)](https://github.com/NeuricsTech/BMR2116_Demo/releases/latest)
+[![Build status](https://img.shields.io/badge/vs2022-pass-green)](https://github.com/NeuricsTech/BMRecord_Demo)&nbsp;
+[![GitHub Release](https://img.shields.io/github/v/release/NeuricsTech/BMR2116_Demo?color=green)](https://github.com/NeuricsTech/BMRecord_Demo/releases/latest)
 
 </div>
 
-# BMR2116_Lib_Demo
+# BMRecord_Lib_Demo
 
-BMR2116 is an acquisition chip used to collect electrophysiological signals. In order to facilitate the data acquisition of the host computer, NeuricsTech supports the corresponding complete data acquisition hardware, and the library develops a dynamic link library for the corresponding required software.
+BMRecord is an acquisition system used to collect electrophysiological signals. In order to facilitate the data acquisition of the host computer, NeuricsTech supports the corresponding complete data acquisition hardware, and the library develops a dynamic link library for the corresponding required software.
 
 ## Library
 
 ### Install
-Just download the [BMR2216-lib-windows-x86_64.zip](https://github.com/NeuricsTech/BMR2116_Demo/releases/latest) file in the Release build. Then copy the header and library files to your project directory and get started.
+Just download the [BMRecord-lib-windows-x86_64.zip](https://github.com/NeuricsTech/BMRecord_Demo/releases/latest) file in the Release build. Then copy the header and library files to your project directory and get started.
 
-ConfigNeuricsTech.bit needs to be copied to the executable directory.
+ConfigBMRecord.bit needs to be copied to the executable directory.
 
 ### Platform
 * Windows (64 bit)
@@ -33,20 +33,20 @@ ConfigNeuricsTech.bit needs to be copied to the executable directory.
 #### Basic usage
 
 ````c++
-#include <BMR2116_Lib.h>
+#include <BMRecord_Lib.h>
 
 constexpr auto sample_per_read = 1000;
 uint16_t test_data[sample_per_read * 16];
 
 int main()
 {
-    BMR2116_Lib::Application::Init();
-    BMR2116_Lib::Application::ConnectDeviceByIndex(0);
-    BMR2116_Lib::Application::Reset();
-    BMR2116_Lib::Application::setSampleRate(BMR2116_Lib::AmplifierSampleRate::SampleRate20000Hz);
-    BMR2116_Lib::Application::startSample();
-    BMR2116_Lib::Application::getSampleData(test_data, sample_per_read);
-    BMR2116_Lib::Application::close();
+    BMRecord_Lib::Application::Init();
+    BMRecord_Lib::Application::ConnectDeviceByIndex(0);
+    BMRecord_Lib::Application::Reset();
+    BMRecord_Lib::Application::setSampleRate(BMRecord_Lib::AmplifierSampleRate::SampleRate20000Hz);
+    BMRecord_Lib::Application::startSample();
+    BMRecord_Lib::Application::getSampleData(test_data, sample_per_read);
+    BMRecord_Lib::Application::close();
 
     return 0;
 }
@@ -54,15 +54,15 @@ int main()
 
 #### Reading error messages
 ````c++
-#include <BMR2116_Lib.h>
+#include <BMRecord_Lib.h>
 #include <iostream>
 
 int main()
 {
-    BMR2116_Lib::ErrorManager::enableErrorManager(true);
-	auto& em = BMR2116_Lib::ErrorManager::getInstance();
+    BMRecord_Lib::ErrorManager::enableErrorManager(true);
+	auto& em = BMRecord_Lib::ErrorManager::getInstance();
 
-    if (BMR2116_Lib::Application::Init())
+    if (BMRecord_Lib::Application::Init())
 	{
 		if (em.hasError())
 		{
@@ -78,26 +78,18 @@ int main()
 
 #### Set Chip Parameters
 
-````c++
-// BMR2116_Lib::Application::setChipParameters( [Parameter], [Value] )
-BMR2116_Lib::Application::setChipParameters(BMR2116_Lib::ChipParameter_F_HP, 1);
-````
+We provide an API for the user to configure the working parameters of the chip:
 
-Configurable chip parameters include:
-| Parameter |   Min  |   Max  |  Default Value |   Meaning   |
-|   :----:  | :----: | :----: |      :----:    |   :----:    |
-|    F_HP   |   0    |  255   |        0       | 高通截止频率 |
-|    CALC   |   0    |    1   |        1       |     测量    |
-|    CMFB   |   0    |    1   |        0       |   共模反馈  |
-|  PGA_GAIN |   0    |    3   |        0       |   PGA增益   |
-| PGA_IBIAS |   0    |   15   |        1       |  PGA_I_ss  |
-|  LNA_BIAS |   0    |   15   |        0       |  电流源I_ss |
+````c++
+BMRecord_Lib::Application::setHighPassCutoffFrequency(0); // level 0-5
+BMRecord_Lib::Application::setGain(0); // level 0-3
+````
 
 #### Set Chip Sample Rate
 
 ````c++
-// BMR2116_Lib::Application::setSampleRate( [Value] )
-BMR2116_Lib::Application::setSampleRate(BMR2116_Lib::AmplifierSampleRate::SampleRate20000Hz);
+// BMRecord_Lib::Application::setSampleRate( [Value] )
+BMRecord_Lib::Application::setSampleRate(BMRecord_Lib::AmplifierSampleRate::SampleRate20000Hz);
 ````
 
 The configurable sampling rates include: 
@@ -109,7 +101,7 @@ The configurable sampling rates include:
 ## Demo Project
 
 The Demo Project provides an example of rapid development of an acquisition program.
-Just download [Demo-release-windows-x86_64.zip](https://github.com/NeuricsTech/BMR2116_Demo/releases/latest) from the Release to quickly test whether the hardware is working.
+Just download [Demo-release-windows-x86_64.zip](https://github.com/NeuricsTech/BMRecord_Demo/releases/latest) from the Release to quickly test whether the hardware is working.
 Demo will sample continuously for 10s at a sampling rate of 20K.
 
 ### Platform
@@ -122,12 +114,12 @@ The Demo program uses [Premake](https://github.com/premake/premake-core) to gene
 Visual Studio 2022 is used by default.
 
 ```console
-$ git clone --recursive https://github.com/NeuricsTech/BMR2116_Demo.git
-$ cd BMR2116_Demo
+$ git clone --recursive https://github.com/NeuricsTech/BMRecord_Demo.git
+$ cd BMRecord_Demo
 $ .\GenerateProject.bat
 ```
 
-It will generate the BMR2116_Demo.sln file in the current directory.
+It will generate the BMRecord_Demo.sln file in the current directory.
 See the [Premake documentation](https://premake.github.io/docs/Using-Premake) for support for other project files, and create your project with the following command:
 
 ```console
