@@ -21,12 +21,12 @@ namespace BMRecord_Lib
 		_BMR_API_ static void enableErrorManager(bool enable);
 
 		_BMR_API_ bool hasError() const noexcept;
-		_BMR_API_ ErrorInfo ErrorManager::getLastError();
+		_BMR_API_ ErrorInfo getLastError();
 		_BMR_API_ void clearErrors() noexcept;
 
 		_BMR_API_ bool hasInfo() const noexcept;
-		_BMR_API_ ErrorInfo ErrorManager::getLastInfo();
-		_BMR_API_ ErrorInfo ErrorManager::getFirstInfo();
+		_BMR_API_ ErrorInfo getLastInfo();
+		_BMR_API_ ErrorInfo getFirstInfo();
 		_BMR_API_ void clearInfos() noexcept;
 
 		ErrorManager(const ErrorManager&) = delete;
