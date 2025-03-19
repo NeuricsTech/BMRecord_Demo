@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/NeuricsTech/BMRecord_Demo/windows.yaml?label=Windows)&nbsp;
+[![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/NeuricsTech/BMRecord_Demo/windows.yaml?label=Windows)](https://github.com/NeuricsTech/BMRecord_Demo/actions/workflows/windows.yaml)&nbsp;
 [![GitHub Release](https://img.shields.io/github/v/release/NeuricsTech/BMRecord_Demo?color=green)](https://github.com/NeuricsTech/BMRecord_Demo/releases/latest)
 
 </div>
