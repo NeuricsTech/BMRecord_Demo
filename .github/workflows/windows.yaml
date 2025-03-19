@@ -22,7 +22,7 @@ jobs:
           ./GenerateProject.bat
 
       - name: Add MSBuild to PATH
-        uses: microsoft/setup-msbuild@v2.297.0
+        uses: microsoft/setup-msbuild@v1.10.0
 
       - name: Build
         shell: pwsh
