@@ -2,7 +2,7 @@
 
 <div align="center">
 
-[![Build status](https://img.shields.io/badge/vs2022-pass-green)](https://github.com/NeuricsTech/BMRecord_Demo)&nbsp;
+![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/NeuricsTech/BMRecord_Demo/windows.yaml?label=Windows)&nbsp;
 [![GitHub Release](https://img.shields.io/github/v/release/NeuricsTech/BMRecord_Demo?color=green)](https://github.com/NeuricsTech/BMRecord_Demo/releases/latest)
 
 </div>
