@@ -81,7 +81,7 @@ int main()
 We provide an API for the user to configure the working parameters of the chip:
 
 ````c++
-BMRecord_Lib::Application::setHighPassCutoffFrequency(0); // level 0-5
+BMRecord_Lib::Application::setHighPassCutoffFrequency(0); // level 0-15
 BMRecord_Lib::Application::setGain(0); // level 0-3
 ````
 
